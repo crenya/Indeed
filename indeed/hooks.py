@@ -43,7 +43,11 @@ app_license = "mit"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+	"Job Opening": "public/js/job_opening.js",
+	"Indeed Job Sync": "public/js/indeed_job_sync.js",
+	"Indeed Settings": "public/js/indeed_settings.js",
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -83,7 +87,8 @@ app_license = "mit"
 # ------------
 
 # before_install = "indeed.install.before_install"
-# after_install = "indeed.install.after_install"
+after_install = "indeed.install.after_install"
+after_migrate = "indeed.install.after_migrate"
 
 # Uninstallation
 # ------------
@@ -137,34 +142,27 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+	"Job Opening": {
+		"on_update": "indeed.jobs.on_job_opening_update",
+		"on_trash": "indeed.jobs.on_job_opening_trash",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"all": [
-# 		"indeed.tasks.all"
-# 	],
-# 	"daily": [
-# 		"indeed.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"indeed.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"indeed.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"indeed.tasks.monthly"
-# 	],
-# }
+scheduler_events = {
+	"all": [
+		"indeed.tasks.retry_pending_jobs",
+	],
+	"hourly": [
+		"indeed.tasks.sync_applications",
+	],
+	"daily_long": [
+		"indeed.tasks.cleanup_logs",
+	],
+}
 
 # Testing
 # -------
@@ -246,4 +244,3 @@ app_license = "mit"
 # ------------
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
-

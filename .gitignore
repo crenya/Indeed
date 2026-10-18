@@ -5,3 +5,6 @@
 tags
 node_modules
 __pycache__
+.env
+*.sqlite
+site_config.json

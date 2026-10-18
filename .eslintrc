@@ -18,10 +18,11 @@
 		"quotes": ["off"],
 		"semi": "off",
 		"camelcase": "off",
+		"comma-dangle": "off",
 		"no-unused-vars": "off",
 		"no-console": ["warn"],
 		"no-extra-boolean-cast": ["off"],
-		"no-control-regex": ["off"],
+		"no-control-regex": ["off"]
 	},
 	"root": true,
 	"globals": {

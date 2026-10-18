@@ -1,0 +1,262 @@
+{
+ "actions": [],
+ "creation": "2026-10-18 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "enabled",
+  "connection_section",
+  "client_id",
+  "client_secret",
+  "scope",
+  "token_endpoint",
+  "graphql_endpoint",
+  "request_timeout",
+  "job_publishing_section",
+  "enable_job_publishing",
+  "auto_publish_new_jobs",
+  "job_country",
+  "default_company_name",
+  "default_apply_url",
+  "job_create_mutation",
+  "job_update_mutation",
+  "job_expire_mutation",
+  "application_sync_section",
+  "enable_application_sync",
+  "webhook_signature_header",
+  "webhook_secret",
+  "application_status",
+  "default_source",
+  "application_query",
+  "applications_query",
+  "last_application_cursor",
+  "reliability_section",
+  "max_attempts",
+  "retry_delay_minutes",
+  "log_retention_days",
+  "max_log_body_chars"
+ ],
+ "fields": [
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "connection_section",
+   "fieldtype": "Section Break",
+   "label": "Indeed Connection"
+  },
+  {
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "label": "Client ID",
+   "reqd": 1
+  },
+  {
+   "fieldname": "client_secret",
+   "fieldtype": "Password",
+   "label": "Client Secret"
+  },
+  {
+   "default": "employer_access",
+   "description": "OAuth scope granted by Indeed (usually employer_access).",
+   "fieldname": "scope",
+   "fieldtype": "Data",
+   "label": "OAuth Scope"
+  },
+  {
+   "default": "https://apis.indeed.com/oauth/v2/tokens",
+   "fieldname": "token_endpoint",
+   "fieldtype": "Data",
+   "label": "Token Endpoint",
+   "reqd": 1
+  },
+  {
+   "default": "https://apis.indeed.com/graphql",
+   "fieldname": "graphql_endpoint",
+   "fieldtype": "Data",
+   "label": "GraphQL Endpoint",
+   "reqd": 1
+  },
+  {
+   "default": "30",
+   "description": "HTTP timeout in seconds.",
+   "fieldname": "request_timeout",
+   "fieldtype": "Int",
+   "label": "Request Timeout"
+  },
+  {
+   "fieldname": "job_publishing_section",
+   "fieldtype": "Section Break",
+   "label": "Job Publishing"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_job_publishing",
+   "fieldtype": "Check",
+   "label": "Enable Job Publishing"
+  },
+  {
+   "default": "1",
+   "description": "Publish every open Job Opening automatically. Uncheck to publish only records with Publish to Indeed checked.",
+   "fieldname": "auto_publish_new_jobs",
+   "fieldtype": "Check",
+   "label": "Auto Publish New Jobs"
+  },
+  {
+   "default": "IN",
+   "description": "ISO 3166-1 alpha-2 country code used in the job location.",
+   "fieldname": "job_country",
+   "fieldtype": "Data",
+   "label": "Job Country Code"
+  },
+  {
+   "description": "Overrides the Company name sent to Indeed.",
+   "fieldname": "default_company_name",
+   "fieldtype": "Data",
+   "label": "Default Company Name"
+  },
+  {
+   "description": "Optional fixed apply URL. Defaults to the Job Opening website route.",
+   "fieldname": "default_apply_url",
+   "fieldtype": "Data",
+   "label": "Default Apply URL"
+  },
+  {
+   "description": "Optional GraphQL override. Leave blank to use the built-in mutation.",
+   "fieldname": "job_create_mutation",
+   "fieldtype": "Code",
+   "label": "Job Create Mutation",
+   "options": "GraphQL"
+  },
+  {
+   "description": "Optional GraphQL override. Leave blank to use the built-in mutation.",
+   "fieldname": "job_update_mutation",
+   "fieldtype": "Code",
+   "label": "Job Update Mutation",
+   "options": "GraphQL"
+  },
+  {
+   "description": "Optional GraphQL override. Leave blank to use the built-in mutation.",
+   "fieldname": "job_expire_mutation",
+   "fieldtype": "Code",
+   "label": "Job Expire Mutation",
+   "options": "GraphQL"
+  },
+  {
+   "fieldname": "application_sync_section",
+   "fieldtype": "Section Break",
+   "label": "Application Sync"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_application_sync",
+   "fieldtype": "Check",
+   "label": "Enable Application Sync"
+  },
+  {
+   "default": "X-Indeed-Signature",
+   "fieldname": "webhook_signature_header",
+   "fieldtype": "Data",
+   "label": "Webhook Signature Header"
+  },
+  {
+   "description": "HMAC-SHA256 secret used to verify inbound webhooks.",
+   "fieldname": "webhook_secret",
+   "fieldtype": "Password",
+   "label": "Webhook Secret"
+  },
+  {
+   "default": "Open",
+   "fieldname": "application_status",
+   "fieldtype": "Data",
+   "label": "New Applicant Status"
+  },
+  {
+   "default": "Indeed",
+   "fieldname": "default_source",
+   "fieldtype": "Data",
+   "label": "Default Applicant Source"
+  },
+  {
+   "description": "Optional GraphQL override used to fetch a single application.",
+   "fieldname": "application_query",
+   "fieldtype": "Code",
+   "label": "Application Query",
+   "options": "GraphQL"
+  },
+  {
+   "description": "Optional GraphQL override used by the polling fallback.",
+   "fieldname": "applications_query",
+   "fieldtype": "Code",
+   "label": "Applications List Query",
+   "options": "GraphQL"
+  },
+  {
+   "fieldname": "last_application_cursor",
+   "fieldtype": "Data",
+   "label": "Last Application Cursor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reliability_section",
+   "fieldtype": "Section Break",
+   "label": "Reliability"
+  },
+  {
+   "default": "5",
+   "fieldname": "max_attempts",
+   "fieldtype": "Int",
+   "label": "Max Attempts"
+  },
+  {
+   "default": "15",
+   "description": "Base delay in minutes; each retry waits delay x attempt number.",
+   "fieldname": "retry_delay_minutes",
+   "fieldtype": "Int",
+   "label": "Retry Delay (Minutes)"
+  },
+  {
+   "default": "30",
+   "fieldname": "log_retention_days",
+   "fieldtype": "Int",
+   "label": "Log Retention (Days)"
+  },
+  {
+   "default": "20000",
+   "fieldname": "max_log_body_chars",
+   "fieldtype": "Int",
+   "label": "Max Log Body Characters"
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-18 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Indeed",
+ "name": "Indeed Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 0,
+   "read": 1,
+   "report": 0,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 0
+}

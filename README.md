@@ -1,6 +1,11 @@
 ### Indeed
 
-Your next job starts here. Create an account or sign in to see your personalised job recommendations. Get Started. Employers, your next hire is here. Post a job.
+ERPNext / Frappe HRMS ↔ Indeed integration (both directions).
+
+- **Outbound:** Job Opening save → Indeed GraphQL job create / update / expire, queued with retries.
+- **Inbound:** Indeed applications → `Job Applicant` (webhook, with hourly polling fallback).
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for the design and [TESTING.md](TESTING.md) for verification.
 
 ### Installation
 
@@ -9,8 +14,32 @@ You can install this app using the [bench](https://github.com/frappe/bench) CLI:
 ```bash
 cd $PATH_TO_YOUR_BENCH
 bench get-app $URL_OF_THIS_REPO --branch develop
-bench install-app indeed
+bench get-app hrms --branch version-15
+bench --site $SITE install-app hrms
+bench --site $SITE install-app indeed
 ```
+
+### Configuration
+
+Open **Indeed Settings** and fill in:
+
+| Field | Purpose |
+| --- | --- |
+| `client_id` / `client_secret` | OAuth2 client-credentials pair issued by Indeed |
+| `scope` | Defaults to `employer_access` |
+| `job_country` | ISO 3166-1 alpha-2 code used in the job location |
+| `auto_publish_new_jobs` | Publish every open Job Opening (otherwise opt in per record) |
+| `webhook_secret` | HMAC secret; inbound webhooks are rejected when empty |
+| `*_mutation` / `*_query` | Optional GraphQL overrides for your Indeed partner schema |
+
+Register the webhook URL with Indeed:
+
+```
+https://<your-site>/api/method/indeed.api.webhook
+```
+
+Per job control lives on the Job Opening form (**Indeed** section + Publish/Expire buttons). Sync
+state lives in **Indeed Job Sync**; request/response history in **Indeed Sync Log**.
 
 ### Contributing
 
@@ -32,11 +61,9 @@ Pre-commit is configured to use the following tools for checking and formatting 
 
 This app can use GitHub Actions for CI. The following workflows are configured:
 
-- CI: Installs this app and runs unit tests on every push to `develop` branch.
+- CI: Installs frappe + hrms + this app and runs the test suite on every push and pull request.
 - Linters: Runs [Frappe Semgrep Rules](https://github.com/frappe/semgrep-rules) and [pip-audit](https://pypi.org/project/pip-audit/) on every pull request.
-
 
 ### License
 
 mit
-# Indeed

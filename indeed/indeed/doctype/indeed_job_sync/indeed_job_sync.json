@@ -1,0 +1,166 @@
+{
+ "actions": [],
+ "autoname": "field:job_opening",
+ "creation": "2026-10-18 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_opening",
+  "status",
+  "desired_action",
+  "column_break_1",
+  "job_key",
+  "indeed_job_id",
+  "application_cursor",
+  "sync_section",
+  "attempt_count",
+  "last_attempt_on",
+  "next_retry_on",
+  "payload_hash",
+  "details_section",
+  "last_error",
+  "response_snippet"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_opening",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Job Opening",
+   "options": "Job Opening",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Pending\nQueued\nSynced\nFailed\nExpired\nSkipped",
+   "read_only": 1
+  },
+  {
+   "default": "Publish",
+   "fieldname": "desired_action",
+   "fieldtype": "Select",
+   "label": "Desired Action",
+   "options": "Publish\nUpdate\nExpire",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "job_key",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Indeed Job Key",
+   "read_only": 1
+  },
+  {
+   "fieldname": "indeed_job_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Indeed Job ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "application_cursor",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Application Cursor",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sync_section",
+   "fieldtype": "Section Break",
+   "label": "Sync State"
+  },
+  {
+   "default": "0",
+   "fieldname": "attempt_count",
+   "fieldtype": "Int",
+   "label": "Attempt Count",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_attempt_on",
+   "fieldtype": "Datetime",
+   "label": "Last Attempt On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "next_retry_on",
+   "fieldtype": "Datetime",
+   "label": "Next Retry On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payload_hash",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Payload Hash",
+   "read_only": 1
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "last_error",
+   "fieldtype": "Small Text",
+   "label": "Last Error",
+   "read_only": 1
+  },
+  {
+   "fieldname": "response_snippet",
+   "fieldtype": "Code",
+   "label": "Last Response",
+   "options": "JSON",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-10-18 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Indeed",
+ "name": "Indeed Job Sync",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 0,
+   "role": "HR Manager",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "job_opening"
+}
