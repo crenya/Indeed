@@ -13,9 +13,14 @@ from indeed.utils import (
 )
 
 
-@frappe.whitelist(allow_guest=True, methods=["POST"])
+@frappe.whitelist(allow_guest=True, methods=["POST"])  # nosemgrep: guest-whitelisted-method
 def webhook():
-	"""Inbound application webhook from Indeed."""
+	"""Inbound application webhook from Indeed.
+
+	Guest-allowed by design: Indeed cannot authenticate as a site user. Requests are rejected
+	unless Indeed Settings is enabled and the HMAC-SHA256 signature over the raw body matches
+	the configured webhook secret (see `verify_signature`).
+	"""
 	settings = get_settings()
 
 	if not settings.enabled or not settings.enable_application_sync:
@@ -69,7 +74,7 @@ def test_connection():
 
 
 @frappe.whitelist()
-def publish_now(job_opening, expire=None):
+def publish_now(job_opening: str, expire=None):
 	frappe.has_permission("Job Opening", "write", doc=job_opening, throw=True)
 	if not is_enabled("enable_job_publishing"):
 		frappe.throw(_("Indeed job publishing is disabled in Indeed Settings"))
@@ -80,7 +85,7 @@ def publish_now(job_opening, expire=None):
 
 
 @frappe.whitelist()
-def retry_now(job_sync):
+def retry_now(job_sync: str):
 	frappe.has_permission("Indeed Job Sync", "write", throw=True)
 	enqueue_sync(job_sync)
 	return {"queued": True}
@@ -94,7 +99,7 @@ def sync_applications_now():
 
 
 @frappe.whitelist()
-def sync_status(job_opening):
+def sync_status(job_opening: str):
 	row = frappe.db.get_value(
 		"Indeed Job Sync",
 		job_opening,
@@ -105,7 +110,7 @@ def sync_status(job_opening):
 
 
 @frappe.whitelist()
-def fetch_application_now(application_id):
+def fetch_application_now(application_id: str):
 	frappe.only_for(("System Manager", "HR Manager"))
 	payload = fetch_application(application_id)
 	return process_application(payload) if isinstance(payload, dict) else payload

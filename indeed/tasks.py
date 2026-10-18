@@ -43,4 +43,3 @@ def cleanup_logs():
 	days = cint(settings.log_retention_days) or 30
 	cutoff = add_to_date(now_datetime(), days=-days)
 	frappe.db.delete("Indeed Sync Log", {"creation": ["<", cutoff]})
-	frappe.db.commit()

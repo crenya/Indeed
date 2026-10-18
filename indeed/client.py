@@ -68,7 +68,7 @@ class IndeedClient:
 			)
 		except requests.RequestException as exc:
 			log_sync("Failed", operation="token", error=str(exc))
-			raise IndeedError(render_error(_("Could not reach the token endpoint: {0}").format(exc)))
+			raise IndeedError(render_error(_("Could not reach the token endpoint: {0}").format(str(exc))))
 
 		if response.status_code >= 400:
 			log_sync(
@@ -141,7 +141,7 @@ class IndeedClient:
 					reference_doctype=reference_doctype,
 					reference_name=reference_name,
 				)
-				raise IndeedError(render_error(_("Could not reach Indeed: {0}").format(exc)))
+				raise IndeedError(render_error(_("Could not reach Indeed: {0}").format(str(exc))))
 
 			duration = int((time.monotonic() - started) * 1000)
 			last_response = response
