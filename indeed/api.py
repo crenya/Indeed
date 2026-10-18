@@ -1,5 +1,3 @@
-from typing import Optional
-
 import frappe
 from frappe import _
 
@@ -76,7 +74,7 @@ def test_connection():
 
 
 @frappe.whitelist()
-def publish_now(job_opening: str, expire: Optional[int] = None):
+def publish_now(job_opening: str, expire: str = ""):
 	frappe.has_permission("Job Opening", "write", doc=job_opening, throw=True)
 	if not is_enabled("enable_job_publishing"):
 		frappe.throw(_("Indeed job publishing is disabled in Indeed Settings"))

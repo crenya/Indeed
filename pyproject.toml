@@ -47,7 +47,6 @@ ignore = [
     "E402", # module level import not at top of file
     "E501", # line too long
     "E741", # ambiguous variable name
-    "UP045", # keep Optional[int]; Frappe semgrep requires an explicit type hint
     "F401", # "unused" imports
     "F403", # can't detect undefined names from * import
     "F405", # can't detect undefined names from * import
