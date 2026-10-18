@@ -1,0 +1,20 @@
+{
+ "creation": "2026-10-18 14:55:00.000000",
+ "docstatus": 0,
+ "doctype": "Number Card",
+ "document_type": "Indeed Job Sync",
+ "filters_json": "[[\"Indeed Job Sync\",\"status\",\"=\",\"Synced\"]]",
+ "function": "Count",
+ "idx": 0,
+ "is_public": 1,
+ "is_standard": 1,
+ "label": "Jobs Posted on Indeed",
+ "modified": "2026-10-18 14:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Indeed",
+ "name": "Jobs Posted on Indeed",
+ "owner": "Administrator",
+ "show_percentage_stats": 0,
+ "stats_time_interval": "Monthly",
+ "type": "Document Type"
+}

@@ -41,6 +41,21 @@ https://<your-site>/api/method/indeed.api.webhook
 Per job control lives on the Job Opening form (**Indeed** section + Publish/Expire buttons). Sync
 state lives in **Indeed Job Sync**; request/response history in **Indeed Sync Log**.
 
+### Desk workspace
+
+The app ships a public **Indeed** workspace (parent **HR**, icon `share-people`) with pinned
+shortcuts to `Indeed Settings`, `Indeed Job Sync`, `Indeed Sync Log`, `Indeed Application`,
+`Job Opening`, `Job Applicant`, and these number cards:
+
+| Card | DocType / filter |
+| --- | --- |
+| Job Openings | `Job Opening` (all) |
+| Open Job Openings | `Job Opening.status = Open` |
+| Jobs Posted on Indeed | `Indeed Job Sync.status = Synced` |
+| Failed Indeed Syncs | `Indeed Job Sync.status = Failed` |
+| Indeed Applications | `Indeed Application.status = Linked` |
+| Indeed Applicants | `Job Applicant.from_indeed = 1` |
+
 ### Contributing
 
 This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
