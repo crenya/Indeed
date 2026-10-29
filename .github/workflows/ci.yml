@@ -16,7 +16,7 @@ jobs:
   # crenya's shared Frappe CI: own ports + bench per job on crenya-ci, a saved Frappe/ERPNext site,
   # fails when no tests ran. One fix there reaches every app.
   tests:
-    uses: crenya/crenya_ci/.github/workflows/frappe-app.yml@v1
+    uses: crenya/ci-workflows/.github/workflows/frappe-app.yml@v1
     with:
       app: indeed
       frappe_versions: '["version-15"]'
